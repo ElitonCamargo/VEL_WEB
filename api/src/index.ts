@@ -20,12 +20,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/db-test", (req, res) => {
-  pool.query("SELECT 1 + 1 AS resultado", (err, results) => {
+  pool.query("SELECT * FROM perfis", (err, results) => {
     if (err) return res.status(500).json(err);
     res.json(results);
   });
 });
-
-app.listen(3000, () => {
-  console.log("Servidor no container rodando na porta 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor no container rodando na porta ${PORT}`);
 });

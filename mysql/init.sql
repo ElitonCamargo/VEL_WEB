@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS vel_web_api_db;
+CREATE DATABASE vel_web_api_db;
+USE vel_web_api_db;
+
 -- =========================
 -- PADRÕES GERAIS
 -- =========================
@@ -15,6 +19,8 @@ CREATE TABLE perfis (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL
 );
+
+
 
 -- =========================
 -- ENDPOINTS (RBAC)
