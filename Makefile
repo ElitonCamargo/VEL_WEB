@@ -8,6 +8,13 @@ DROPS=./mysql/drops.sql
 INIT=./mysql/init.sql
 SEED=./mysql/seed.sql
 
+# Start serviço do MySQL
+db-start:
+	sudo service mysql start
+
+# Stop serviço do MySQL
+db-stop:
+	sudo service mysql stop
 
 # Reseta a estrutura do banco de dados para
 db-init:
