@@ -36,10 +36,16 @@ api-build:
 api-start:
 	cd api/ && npm start
 
+# Instalar dependências
+install:
+	cd api/ && npm install
 
 # Helps
 help:
 	@echo "Comandos disponíveis:"
+	@echo "  install         - Instala as dependências da API"
+	@echo "  db-start         - Inicia o serviço do MySQL"
+	@echo "  db-stop          - Para o serviço do MySQL"
 	@echo "  db-init         - Reseta a estrutura do banco de dados"
 	@echo "  db-seed         - Inclui dados iniciais ao banco"
 	@echo "  api-dev         - Inicia a API em modo DEV"
