@@ -17,15 +17,16 @@ CREATE TABLE perfis (
     descricao VARCHAR(255),
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL
 );
 
 
 
 -- =========================
--- ENDPOINTS (RBAC)
+-- PERMISSÃO (RBAC)
 -- =========================
-CREATE TABLE endpoints (
+CREATE TABLE permissoes (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 
     codigo VARCHAR(100) NOT NULL,
@@ -39,18 +40,18 @@ CREATE TABLE endpoints (
 );
 
 -- =========================
--- PERFIL x ENDPOINT (RBAC)
+-- PERFIL x PERMISSÃO (RBAC)
 -- =========================
-CREATE TABLE perfil_endpoints (
+CREATE TABLE perfil_permissoes (
     perfil_id INT UNSIGNED,
-    endpoint_id INT UNSIGNED,
+    permissao_id INT UNSIGNED,
 
-    PRIMARY KEY (perfil_id, endpoint_id),
+    PRIMARY KEY (perfil_id, permissao_id),
 
     FOREIGN KEY (perfil_id) REFERENCES perfis(id)
         ON DELETE CASCADE,
 
-    FOREIGN KEY (endpoint_id) REFERENCES endpoints(id)
+    FOREIGN KEY (permissao_id) REFERENCES permissoes(id)
         ON DELETE CASCADE
 );
 
@@ -60,7 +61,7 @@ CREATE TABLE perfil_endpoints (
 CREATE TABLE usuarios (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 
-    perfil_id INT UNSIGNED,
+    perfil_id INT UNSIGNED DEFAULT NULL,
 
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
@@ -90,6 +91,7 @@ CREATE TABLE fabricantes (
     logo VARCHAR(255),
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL
 );
 
@@ -103,6 +105,7 @@ CREATE TABLE categorias (
     icone VARCHAR(255),
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL
 );
 

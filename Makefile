@@ -25,15 +25,15 @@ db-seed:
 	mysql -u $(DB_USER) -p$(DB_PASS) $(DB_NAME) < $(SEED)
 
 # Iniciar em mode DEV
-api-dev:
+run-dev:
 	cd api/ && npm run dev
 
 # Fazer BUILD
-api-build:
+run-build:
 	cd api/ && npm run build
 
 # Iniciar em mode de PRODUÇÃO
-api-start:
+run-start:
 	cd api/ && npm start
 
 # Instalar dependências
@@ -48,7 +48,7 @@ help:
 	@echo "  db-stop     - Para o serviço do MySQL"
 	@echo "  db-init     - Reseta a estrutura do banco de dados"
 	@echo "  db-seed     - Inclui dados iniciais ao banco"
-	@echo "  api-dev     - Inicia a API em modo DEV"
-	@echo "  api-build   - Faz o build da API"
-	@echo "  api-start   - Inicia a API em modo PRODUÇÃO"
+	@echo "  run-dev     - Inicia a API em modo DEV"
+	@echo "  run-build   - Faz o build da API"
+	@echo "  run-start   - Inicia a API em modo PRODUÇÃO"
 	@echo "  help        - Exibe esta ajuda"
