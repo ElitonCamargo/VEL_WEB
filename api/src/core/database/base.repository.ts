@@ -7,6 +7,22 @@ export abstract class BaseRepository<T> {
     protected db: Pool;
     protected softDeleteEnabled: boolean = true;
 
+    protected formatData(data: any): any {
+        const formatted: any = {};
+
+        for (const key in data) {
+            const value = data[key];
+
+            if (typeof value === "object" && value !== null && !(value instanceof Date)) {
+            formatted[key] = JSON.stringify(value);
+            } else {
+            formatted[key] = value;
+            }
+        }
+
+        return formatted;
+    }
+
     constructor(table: string, softDeleteEnabled: boolean = true) {
         this.table = table;
         this.db = pool;
@@ -97,10 +113,11 @@ export abstract class BaseRepository<T> {
 
     async create(data: Partial<T>): Promise<T | null> {
 
+        const formattedData = this.formatData(data);
 
         const [result] = await this.db.query<ResultSetHeader>(
             `INSERT INTO ${this.table} SET ?`,
-            [data]
+            [formattedData]
         );
 
         return await this.findById(result.insertId);

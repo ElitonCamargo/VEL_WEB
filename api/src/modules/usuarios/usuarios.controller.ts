@@ -11,4 +11,9 @@ export class UsuariosController {
         const data = await this.service.create(req.body);
         res.status(201).json(data);
     };
+
+    fildAll = async (req: Request, res: Response) => {
+        const data = await this.service.fildAll();
+        res.status(200).json(data);
+    };
 }

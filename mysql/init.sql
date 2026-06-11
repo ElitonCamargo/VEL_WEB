@@ -60,23 +60,27 @@ CREATE TABLE perfil_permissoes (
 -- =========================
 CREATE TABLE usuarios (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-
-    perfil_id INT UNSIGNED DEFAULT NULL,
-
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     nome VARCHAR(150) NOT NULL,
     whatsapp VARCHAR(20),
     avatar VARCHAR(255),
-
-    endereco JSON,
-    
+    endereco JSON,    
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMP NULL,
+    deleted_at TIMESTAMP NULL
+);
 
-    FOREIGN KEY (perfil_id) REFERENCES perfis(id)
+create index idx_usuarios_email on usuarios(email);
+
+CREATE TABLE usuario_perfis (
+    usuario_id INT UNSIGNED,
+    perfil_id INT UNSIGNED,
+
+    PRIMARY KEY (usuario_id, perfil_id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (perfil_id) REFERENCES perfis(id) ON DELETE CASCADE
 );
 
 CREATE INDEX idx_usuario_deleted ON usuarios(deleted_at);

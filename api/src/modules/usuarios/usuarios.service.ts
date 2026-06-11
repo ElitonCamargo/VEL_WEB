@@ -17,9 +17,15 @@ export class UsuariosService {
 
     const senhaHash = await bcrypt.hash(data.senha!, 10);
 
+    delete data.senha;
+
     return this.repository.create({
       ...data,
       senha: senhaHash
     });
+  }
+
+  async fildAll(): Promise<Usuario[]> {
+    return this.repository.findAll();
   }
 }

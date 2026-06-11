@@ -12,6 +12,16 @@ const routesUsuarios: RouteConfig[] = [
     recurso: 'Usuários',
     descricao: 'Criar novo usuário',
     ehPublica: false
+  },
+  {
+    codigo: 'usuarios:list',
+    metodo: 'GET',
+    rota: '/usuarios',
+    // middlewares: [],
+    functionExec: usuariosController.fildAll,
+    recurso: 'Usuários',
+    descricao: 'Listar todos os usuários',
+    ehPublica: false
   }
 ];
 

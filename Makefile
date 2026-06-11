@@ -4,7 +4,6 @@ DB_PASS=123456
 DB_NAME=vel_web_api_db
 
 # Caminho para os arquivos SQL
-DROPS=./mysql/drops.sql
 INIT=./mysql/init.sql
 SEED=./mysql/seed.sql
 
