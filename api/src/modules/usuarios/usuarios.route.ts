@@ -18,7 +18,7 @@ const routesUsuarios: RouteConfig[] = [
     metodo: 'GET',
     rota: '/usuarios',
     // middlewares: [],
-    functionExec: usuariosController.fildAll,
+    functionExec: usuariosController.findAll,
     recurso: 'Usuários',
     descricao: 'Listar todos os usuários',
     ehPublica: false

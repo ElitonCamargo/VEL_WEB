@@ -1,7 +1,7 @@
-import { BaseRepository } from "../../core/database/base.repository.ts";
+import { CrudRepository } from "../../core/repository/abstract-crud.repository.ts";
 import type { Usuario } from "./usuarios.types.ts";
 
-export class UsuariosRepository extends BaseRepository<Usuario> {
+export class UsuariosRepository extends CrudRepository<Usuario> {
   constructor() {
     super("usuarios");
   }

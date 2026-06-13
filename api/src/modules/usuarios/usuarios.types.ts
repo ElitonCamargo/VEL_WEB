@@ -1,5 +1,6 @@
-export interface Usuario {
-    id: number;
+import type { BaseEntity } from "../../core/types/base.types.ts";
+
+export interface Usuario extends BaseEntity {
     perfil_id: number | null;
     email: string;
     senha: string;
@@ -15,7 +16,4 @@ export interface Usuario {
         complemento?: string;
         cep?: string;
     };
-    created_at?: Date;
-    updated_at?: Date;
-    deleted_at?: Date | null;
 }

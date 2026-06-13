@@ -1,11 +1,19 @@
-import type { Pool, ResultSetHeader } from "mysql2/promise";
 import pool from "./connection.ts";
+import type { OrderBy, Filter, Pagination} from "../types/query.types.ts";
+import type { Pool, ResultSetHeader } from "mysql2/promise";
+import type { BaseEntity } from "../types/base.types.ts";
 
 
-export abstract class BaseRepository<T> {
+export abstract class CrudRepository<T extends BaseEntity> {
     protected table: string;
     protected db: Pool;
     protected softDeleteEnabled: boolean = true;
+    
+    constructor(table: string, softDeleteEnabled: boolean = true) {
+        this.table = table;
+        this.db = pool;
+        this.softDeleteEnabled = softDeleteEnabled;
+    }
 
     protected formatData(data: any): any {
         const formatted: any = {};
@@ -14,20 +22,15 @@ export abstract class BaseRepository<T> {
             const value = data[key];
 
             if (typeof value === "object" && value !== null && !(value instanceof Date)) {
-            formatted[key] = JSON.stringify(value);
+                formatted[key] = JSON.stringify(value);
             } else {
-            formatted[key] = value;
+                formatted[key] = value;
             }
         }
 
         return formatted;
     }
 
-    constructor(table: string, softDeleteEnabled: boolean = true) {
-        this.table = table;
-        this.db = pool;
-        this.softDeleteEnabled = softDeleteEnabled;
-    }
 
     async findById(id: number): Promise<T | null> {
         const [rows] = await this.db.query(
@@ -39,35 +42,34 @@ export abstract class BaseRepository<T> {
         return result.length ? result[0] : null;
     }
 
-    async findAll(limit?: number, offset?: number): Promise<T[]> {
+    async findAll(pagination?: Pagination, orderBy?: OrderBy): Promise<T[]> {
         let query = `SELECT * FROM ${this.table}`;
-        const conditions: string[] = [];
         const values: string[] = [];
 
         if (this.softDeleteEnabled) {
-            conditions.unshift("deleted_at IS NULL");
+            query += ` WHERE deleted_at IS NULL`;
         }
 
-        if (limit !== undefined) {
-            conditions.push(`LIMIT ?`);
-            values.push(limit.toString());
+        
+        if (orderBy) {
+            query += ` ORDER BY ${orderBy.column} ${orderBy.direction}`;
+        }
+        
+        if (pagination) {
+            query += ` LIMIT ? OFFSET ?`;
+            values.push(String(pagination.limit));
+            values.push(String(pagination.offset));
         }
 
-        if (offset !== undefined) {
-            conditions.push(`OFFSET ?`);
-            values.push(offset.toString());
-        }
-
-        if (conditions.length > 0) {
-            query += ` WHERE ${conditions.join(" AND ")}`;
-        }
 
         const [rows] = await this.db.query(query, values);
 
         return rows as T[];
     }
 
-    async findAllWithFilters(filters: Record<string, unknown>,limit?: number,offset?: number): Promise<T[]> {
+    async findAllWithFilters(filters: Filter[], pagination?: Pagination, orderBy?: OrderBy): Promise<T[]> {
+
+        let query = `SELECT * FROM ${this.table}`;
 
         const conditions: string[] = [];
         const values: unknown[] = [];
@@ -76,26 +78,26 @@ export abstract class BaseRepository<T> {
             conditions.push("deleted_at IS NULL");
         }
 
-        for (const [key, value] of Object.entries(filters)) {
-            conditions.push(`${key} = ?`);
-            values.push(value);
+        for (const filter of filters) {
+            conditions.push(`${filter.column} = ?`);
+            values.push(filter.value);
         }
 
-        let query = `SELECT * FROM ${this.table}`;
 
         if (conditions.length > 0) {
             query += ` WHERE ${conditions.join(" AND ")}`;
         }
 
-        if (limit !== undefined) {
-            query += ` LIMIT ?`;
-            values.push(limit);
+        if (orderBy) {
+            query += ` ORDER BY ${orderBy.column} ${orderBy.direction}`;
         }
 
-        if (offset !== undefined) {
-            query += ` OFFSET ?`;
-            values.push(offset);
+        if (pagination) {
+            query += ` LIMIT ? OFFSET ?`;
+            values.push(String(pagination.limit));
+            values.push(String(pagination.offset));
         }
+          
 
         const [rows] = await this.db.query(query, values);
 

@@ -1,11 +1,11 @@
+import { CrudService } from "../../core/service/abstract-crud.service.ts";
 import { UsuariosRepository } from "./usuarios.repository.ts";
 import type { Usuario } from "./usuarios.types.ts";
 import bcrypt from "bcrypt";
 
-export class UsuariosService {
-  protected repository: UsuariosRepository;
+export class UsuariosService extends CrudService<Usuario, UsuariosRepository> {
   constructor() {
-    this.repository = new UsuariosRepository();
+    super(new UsuariosRepository());
   }
 
   async create(data:Partial<Usuario>): Promise<Usuario | null> {
@@ -25,7 +25,7 @@ export class UsuariosService {
     });
   }
 
-  async fildAll(): Promise<Usuario[]> {
+  async findAll(): Promise<Usuario[]> {
     return this.repository.findAll();
   }
 }
