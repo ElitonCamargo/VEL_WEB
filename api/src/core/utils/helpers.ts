@@ -1,4 +1,4 @@
-import pool from '../repository/connection.ts';
+import pool from '../repositories/connection.ts';
 
 
 export const getCurrentDateMySQLFormat = (): string => {

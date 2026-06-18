@@ -1,11 +1,11 @@
-import { CrudService } from "../../core/service/abstract-crud.service.ts";
+import { CrudService } from "../../core/services/abstract-crud.service.ts";
 import { UsuariosRepository } from "./usuarios.repository.ts";
-import type { Usuario } from "./usuarios.types.ts";
+import type { Usuario } from "./usuario.entity.ts";
 import bcrypt from "bcrypt";
 
 export class UsuariosService extends CrudService<Usuario, UsuariosRepository> {
-  constructor() {
-    super(new UsuariosRepository());
+  constructor(usuariosRepository: UsuariosRepository) {
+    super(usuariosRepository);
   }
 
   async create(data:Partial<Usuario>): Promise<Usuario | null> {

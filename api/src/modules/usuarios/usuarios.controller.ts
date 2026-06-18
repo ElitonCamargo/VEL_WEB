@@ -1,13 +1,13 @@
 import { UsuariosService } from "./usuarios.service.ts";
 import type { Request, Response } from "express";
-import type { Usuario } from "./usuarios.types.ts";
+import type { Usuario } from "./usuario.entity.ts";
 import { success } from "../../core/utils/response.utils.ts";
-import { CrudController } from "../../core/controller/abstract-crud.controller.ts";
-import { CrudRepository } from "../../core/repository/abstract-crud.repository.ts";
+import { CrudController } from "../../core/controllers/abstract-crud.controller.ts";
+import { CrudRepository } from "../../core/repositories/abstract-crud.repository.ts";
 
 export class UsuariosController extends CrudController<Usuario, CrudRepository<Usuario>, UsuariosService> {
-    constructor() {
-        super(new UsuariosService());
+    constructor(ususariosService: UsuariosService) {
+        super(ususariosService);
     }
 
     // create = async (req: Request, res: Response) => {

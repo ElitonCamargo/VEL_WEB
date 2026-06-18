@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import type { BaseEntity } from "../types/base.types.ts";
-import { CrudService } from "../service/abstract-crud.service.ts";
-import { CrudRepository } from "../repository/abstract-crud.repository.ts";
+import type { BaseEntity } from "../types/base.entity.ts";
+import { CrudService } from "../services/abstract-crud.service.ts";
+import { CrudRepository } from "../repositories/abstract-crud.repository.ts";
 import { success } from "../utils/response.utils.ts"
 
 export abstract class CrudController<

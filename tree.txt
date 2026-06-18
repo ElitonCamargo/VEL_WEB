@@ -1,29 +1,35 @@
 .
 ├── Makefile
-├── MySqlCodespaces.md
 ├── README.md
 ├── api
-│   ├── package-lock.json
 │   ├── package.json
 │   ├── src
 │   │   ├── app.ts
 │   │   ├── core
 │   │   │   ├── config
 │   │   │   │   └── config.ts
-│   │   │   ├── database
-│   │   │   │   ├── base.repository.ts
-│   │   │   │   └── connection.ts
+│   │   │   ├── controller
+│   │   │   │   └── abstract-crud.controller.ts
 │   │   │   ├── middlewares
 │   │   │   │   ├── authentication.ts
 │   │   │   │   ├── authorization.ts
 │   │   │   │   ├── error.ts
 │   │   │   │   └── validation.ts
+│   │   │   ├── repository
+│   │   │   │   ├── abstract-crud.repository.ts
+│   │   │   │   └── connection.ts
+│   │   │   ├── service
+│   │   │   │   └── abstract-crud.service.ts
+│   │   │   ├── types
+│   │   │   │   ├── base.types.ts
+│   │   │   │   ├── query.types.ts
+│   │   │   │   └── response.types.ts
 │   │   │   └── utils
 │   │   │       ├── AppError.ts
 │   │   │       ├── asyncHandler.ts
 │   │   │       ├── helpers.ts
 │   │   │       ├── logger.ts
-│   │   │       └── responses.ts
+│   │   │       └── response.utils.ts
 │   │   ├── modules
 │   │   │   ├── categorias
 │   │   │   ├── fabricantes
@@ -43,6 +49,3 @@
 ├── mysql
 │   ├── init.sql
 │   └── seed.sql
-└── tree.txt
-
-16 directories, 30 files

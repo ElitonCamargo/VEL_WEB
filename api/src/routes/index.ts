@@ -1,6 +1,6 @@
 import { Router } from "express";
 import routesUsuarios from "../modules/usuarios/usuarios.route.ts";
-import type{ RouteConfig } from "./route.type.ts";
+import type{ RouteConfig } from "../core/types/route.type.ts";
 
 const allRoutes: RouteConfig[] = [
   ...routesUsuarios,

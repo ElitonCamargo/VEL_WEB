@@ -1,5 +1,5 @@
-import { CrudRepository } from "../../core/repository/abstract-crud.repository.ts";
-import type { Usuario } from "./usuarios.types.ts";
+import { CrudRepository } from "../../core/repositories/abstract-crud.repository.ts";
+import type { Usuario } from "./usuario.entity.ts";
 
 export class UsuariosRepository extends CrudRepository<Usuario> {
   constructor() {

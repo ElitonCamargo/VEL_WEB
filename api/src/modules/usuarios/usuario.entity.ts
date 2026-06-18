@@ -1,4 +1,4 @@
-import type { BaseEntity } from "../../core/types/base.types.ts";
+import type { BaseEntity } from "../../core/types/base.entity.ts";
 
 export interface Usuario extends BaseEntity {
     perfil_id: number | null;

@@ -1,7 +1,7 @@
 import type { OrderBy, Filter, Pagination} from "../types/query.types.ts";
 
-import { CrudRepository } from "../repository/abstract-crud.repository.ts";
-import type { BaseEntity } from "../types/base.types.ts";
+import { CrudRepository } from "../repositories/abstract-crud.repository.ts";
+import type { BaseEntity } from "../types/base.entity.ts";
 
 export abstract class CrudService<T extends BaseEntity, R extends CrudRepository<T>> {
     protected repository: R;

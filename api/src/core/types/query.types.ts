@@ -10,5 +10,6 @@ export interface Pagination {
 
 export interface Filter {
     column: string;
+    operator?: | "=" | ">" | "<" | ">=" | "<=" | "LIKE" | "IN";
     value: unknown;
 }

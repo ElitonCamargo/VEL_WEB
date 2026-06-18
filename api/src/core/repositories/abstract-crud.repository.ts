@@ -1,7 +1,7 @@
 import pool from "./connection.ts";
 import type { OrderBy, Filter, Pagination} from "../types/query.types.ts";
 import type { Pool, ResultSetHeader } from "mysql2/promise";
-import type { BaseEntity } from "../types/base.types.ts";
+import type { BaseEntity } from "../types/base.entity.ts";
 
 
 export abstract class CrudRepository<T extends BaseEntity> {

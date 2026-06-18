@@ -1,6 +1,5 @@
-import type { RouteConfig } from "../../routes/route.type.ts";
-import { UsuariosController } from "./usuarios.controller.ts";
-const usuariosController = new UsuariosController();
+import type { RouteConfig } from "../../core/types/route.type.ts";
+import { usuariosController } from "./usuarios.module.ts";
 
 const routesUsuarios: RouteConfig[] = [
   {
