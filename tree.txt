@@ -1,29 +1,33 @@
 .
 ├── Makefile
+├── MySqlCodespaces.md
 ├── README.md
 ├── api
+│   ├── package-lock.json
 │   ├── package.json
 │   ├── src
 │   │   ├── app.ts
 │   │   ├── core
 │   │   │   ├── config
 │   │   │   │   └── config.ts
-│   │   │   ├── controller
+│   │   │   ├── controllers
 │   │   │   │   └── abstract-crud.controller.ts
 │   │   │   ├── middlewares
 │   │   │   │   ├── authentication.ts
 │   │   │   │   ├── authorization.ts
 │   │   │   │   ├── error.ts
 │   │   │   │   └── validation.ts
-│   │   │   ├── repository
+│   │   │   ├── repositories
 │   │   │   │   ├── abstract-crud.repository.ts
 │   │   │   │   └── connection.ts
-│   │   │   ├── service
+│   │   │   ├── services
 │   │   │   │   └── abstract-crud.service.ts
 │   │   │   ├── types
-│   │   │   │   ├── base.types.ts
+│   │   │   │   ├── base.entity.ts
+│   │   │   │   ├── paginatedResult.types.ts
 │   │   │   │   ├── query.types.ts
-│   │   │   │   └── response.types.ts
+│   │   │   │   ├── response.types.ts
+│   │   │   │   └── route.type.ts
 │   │   │   └── utils
 │   │   │       ├── AppError.ts
 │   │   │       ├── asyncHandler.ts
@@ -31,21 +35,21 @@
 │   │   │       ├── logger.ts
 │   │   │       └── response.utils.ts
 │   │   ├── modules
-│   │   │   ├── categorias
-│   │   │   ├── fabricantes
-│   │   │   ├── perfis
-│   │   │   ├── usuarios
-│   │   │   │   ├── usuarios.controller.ts
-│   │   │   │   ├── usuarios.repository.ts
-│   │   │   │   ├── usuarios.route.ts
-│   │   │   │   ├── usuarios.service.ts
-│   │   │   │   └── usuarios.types.ts
-│   │   │   └── veiculos
+│   │   │   └── usuarios
+│   │   │       ├── usuario.entity.ts
+│   │   │       ├── usuarios.controller.ts
+│   │   │       ├── usuarios.module.ts
+│   │   │       ├── usuarios.repository.ts
+│   │   │       ├── usuarios.route.ts
+│   │   │       └── usuarios.service.ts
 │   │   ├── routes
-│   │   │   ├── index.ts
-│   │   │   └── route.type.ts
+│   │   │   └── index.ts
 │   │   └── server.ts
 │   └── tsconfig.json
 ├── mysql
 │   ├── init.sql
 │   └── seed.sql
+├── projeto_completo.txt
+└── tree.txt
+
+15 directories, 38 files
